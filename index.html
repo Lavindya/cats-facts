@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Facts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Embedded CSS */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .fact {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        button {
+            background-color: #a8d5e2;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateX(calc(10px * var(--attempts, 0)));
+        }
+
+        button:active {
+            background-color: #87c0d0;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="fact">Hover over the button to start!</div>
+        <div class="button-container">
+            <button>Show Fact</button>
+        </div>
+    </div>
+    <script>
+        // Embedded JavaScript
+        let attempts = 0;
+        const button = document.querySelector('button');
+        const factContainer = document.querySelector('.fact');
+
+        button.addEventListener('mouseover', () => {
+            if (attempts < 3) {
+                attempts++;
+                button.style.setProperty('--attempts', attempts);
+            }
+        });
+
+        button.addEventListener('click', () => {
+            if (attempts >= 3) {
+                displayRandomFact();
+            }
+        });
+
+        function displayRandomFact() {
+            const facts = [
+                "Cats are crepuscular, which means they are most active during dawn and dusk.",
+                "A cat's nose print is unique, just like a human fingerprint.",
+                "Cats can jump up to six times their height.",
+                "The average cat sleeps for about 12-16 hours a day.",
+                "Cats have a third eyelid, called a nictitating membrane, that helps protect their eyes.",
+                "A group of cats is called a clowder.",
+                "Cats can make over 100 different vocalizations, while dogs can only make about 10.",
+                "The oldest known cat lived to be 38 years old.",
+                "Cats have retractable claws, which they use for hunting and climbing.",
+                "Domestic cats are descended from wildcats that lived in the Middle East."
+            ];
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            factContainer.textContent = facts[randomIndex];
+        }
+    </script>
+</body>
+</html>
